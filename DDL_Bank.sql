@@ -1,0 +1,50 @@
+create database Bank
+USE Bank
+
+--account
+CREATE TABLE Account (
+  AcNum INT PRIMARY KEY NOT NULL,
+  Type VARCHAR(50) NOT NULL,
+  DataCreat DATE NOT NULL,
+  CustoID INT NOT NULL,
+  FOREIGN KEY (CustoID) REFERENCES Customer(CustoID)
+);
+
+
+--Customer
+CREATE TABLE Customer (
+  CustoID INT PRIMARY KEY NOT NULL,
+  Name VARCHAR(100) NOT NULL,
+  BD DATE NOT NULL,
+  Address VARCHAR(255) NOT NULL
+);
+
+--Loans
+CREATE TABLE Loans (
+  LID INT PRIMARY KEY NOT NULL,
+  Typess VARCHAR(50) NOT NULL,
+  Datas DATE NOT NULL,
+  Amount DECIMAL(15, 2) NOT NULL,
+  CustoID INT NOT NULL,
+  ID INT NOT NULL,
+  BrID INT NOT NULL,
+  FOREIGN KEY (CustoID) REFERENCES Customer(CustoID),
+  FOREIGN KEY (ID) REFERENCES Employee(ID),
+  FOREIGN KEY (BrID) REFERENCES Branch(BrID)
+);
+
+-- Employee
+CREATE TABLE Employee (
+  ID INT PRIMARY KEY NOT NULL,
+  Name VARCHAR(100) NOT NULL,
+  Position VARCHAR(50) NOT NULL
+);
+
+--Branch
+CREATE TABLE Branch (
+  BrID INT PRIMARY KEY NOT NULL,
+  Address VARCHAR(255) NOT NULL,
+  PhoneNo VARCHAR(15) NOT NULL
+);
+
+
